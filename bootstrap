@@ -1,0 +1,33 @@
+#!/bin/sh
+
+set -ex
+
+sudo apt update
+sudo apt upgrade
+sudo apt autoremove
+
+sudo apt install \
+    fish \
+    git \
+    docker.io docker-compose docker-buildx \
+    gcc
+
+if [ -f "$HOME/.cargo/env" ]
+then
+    . "$HOME/.cargo/env"
+fi
+
+installed() { command -v "$1" >/dev/null; }
+
+installed rustup \
+    || curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+
+installed sigi \
+    || cargo install sigi
+
+installed hx \
+    || {
+        sudo add-apt-repository ppa:maveonair/helix-editor
+        sudo apt update
+        sudo apt install helix
+    }
