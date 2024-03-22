@@ -2,6 +2,13 @@
 
 set -ex
 
+cd "$(dirname "$0")" || exit 1
+
+if [ "$NO_SELF_UPDATE" = '' ]
+then
+    git pull --rebase
+fi
+
 sudo apt update
 sudo apt upgrade
 sudo apt autoremove
