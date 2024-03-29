@@ -12,6 +12,9 @@ fi
 mkdir -p "$HOME/.local/bin"
 export PATH="$HOME/.local/bin:$PATH"
 
+sudo mkdir -p /workplace
+sudo chown "$(id -u):$(id -g)" /workplace
+
 sudo apt update
 sudo apt upgrade
 sudo apt autoremove
@@ -20,7 +23,8 @@ sudo apt install -y \
     fish tree rlwrap \
     git \
     docker.io docker-compose docker-buildx \
-    gcc
+    gcc \
+    libssl-dev
 
 if groups | grep -v docker
 then
