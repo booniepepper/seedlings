@@ -20,7 +20,7 @@ sudo apt upgrade
 sudo apt autoremove
 
 sudo apt install -y \
-    fish tree rlwrap \
+    fish tree rlwrap pipx jq \
     git \
     docker.io docker-compose docker-buildx \
     gcc \
@@ -72,4 +72,9 @@ installed factor-vm \
         wget "https://downloads.factorcode.org/releases/$version/factor-linux-x86-64-$version.tar.gz"
         tar -xvf "factor-linux-x86-64-$version.tar.gz"
         ln -s /opt/factor/factor/factor "$HOME/.local/bin/factor-vm"
+    )
+
+installed xq \
+    || (
+        pipx install yq
     )
